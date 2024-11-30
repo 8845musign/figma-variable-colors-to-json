@@ -1,9 +1,8 @@
 import type { fetchNodes } from "../api/fetchNodes";
-import type { Awaited, Token } from "../types";
+import type { FigmaNode } from "../api/types";
+import type { Token } from "../types";
 
-type ReturnFetchNodes = Awaited<ReturnType<typeof fetchNodes>>;
-
-export const nodesToTokens = (nodes: ReturnFetchNodes): Token[] => {
+export const nodesToTokens = (nodes: FigmaNode[]): Token[] => {
 	return nodes.map((n) => {
 		const { document } = n;
 
