@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"scripts": {
-		"run": "tsx --env-file=.env scripts/main.ts"
+		"start": "tsx --env-file=.env scripts/main.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4"
