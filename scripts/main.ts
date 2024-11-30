@@ -2,14 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 import url from "node:url";
 import * as Figma from "figma-api";
+import { type Api, api } from "./figma/api";
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-export const fetchComponents = async () => {
-	const api = new Figma.Api({
-		personalAccessToken: process.env.FIGMA_TOKENS,
-	});
-
+export const fetchComponents = async (api: Api) => {
 	const result = await api.getFileComponents({
 		file_key: process.env.FIGMA_FILE_KEY,
 	});
@@ -17,11 +14,7 @@ export const fetchComponents = async () => {
 	return result.meta.components;
 };
 
-export const fetchNodes = async (nodeIds) => {
-	const api = new Figma.Api({
-		personalAccessToken: process.env.FIGMA_TOKENS,
-	});
-
+export const fetchNodes = async (api: Api, nodeIds) => {
 	const result = await api.getFileNodes(
 		{
 			file_key: process.env.FIGMA_FILE_KEY,
@@ -36,9 +29,9 @@ export const fetchNodes = async (nodeIds) => {
 
 export async function main() {
 	try {
-		const components = await fetchComponents();
+		const components = await fetchComponents(api);
 		const componentNodeIds = components.map((component) => component.node_id);
-		const nodes = await fetchNodes(componentNodeIds);
+		const nodes = await fetchNodes(api, componentNodeIds);
 		const tokens = nodes.map((n) => {
 			const { document } = n;
 
