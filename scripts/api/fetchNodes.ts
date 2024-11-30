@@ -1,4 +1,4 @@
-import type { Api } from "./api";
+import type { Api } from "./types";
 
 export const fetchNodes = async (api: Api, nodeIds) => {
 	const result = await api.getFileNodes(

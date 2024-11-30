@@ -1,4 +1,4 @@
-import type { Api } from "./api";
+import type { Api } from "./types";
 
 export const fetchComponents = async (api: Api) => {
 	const result = await api.getFileComponents({
