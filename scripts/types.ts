@@ -7,3 +7,5 @@ export type Token = {
 		a: number;
 	};
 };
+
+export type Awaited<T> = T extends Promise<infer R> ? R : never;
