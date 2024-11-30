@@ -1,13 +1,14 @@
 {
-  "type": "module",
-  "scripts": {
-    "start": "node --env-file=.env ./scripts/fetchVariables.js"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4"
-  },
-  "dependencies": {
-    "@figma/rest-api-spec": "^0.21.0",
-    "figma-api": "^2.0.1-beta"
-  }
+	"type": "module",
+	"scripts": {
+		"start": "tsx --env-file=.env scripts/fetchVariables.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4"
+	},
+	"dependencies": {
+		"@figma/rest-api-spec": "^0.21.0",
+		"figma-api": "^2.0.1-beta",
+		"tsx": "^4.19.2"
+	}
 }

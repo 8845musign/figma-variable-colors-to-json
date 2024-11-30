@@ -40,9 +40,21 @@ export async function main() {
 		const componentNodeIds = components.map((component) => component.node_id);
 		const nodes = await fetchNodes(componentNodeIds);
 		const tokens = nodes.map((n) => {
+			const { document } = n;
+
+			if (document.type !== "COMPONENT") {
+				throw new Error("document is not COMPONENT");
+			}
+
+			const fill = document.fills[0];
+
+			if (fill.type !== "SOLID") {
+				throw new Error("Not support anything other than SOLID");
+			}
+
 			return {
-				name: n.document.name,
-				color: n.document.fills[0].color,
+				name: document.name,
+				color: fill.color,
 			};
 		});
 
