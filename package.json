@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"scripts": {
-		"start": "tsx --env-file=.env scripts/fetchVariables.ts"
+		"run": "tsx --env-file=.env scripts/main.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4"
