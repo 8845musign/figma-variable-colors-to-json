@@ -1,31 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import url from "node:url";
-import * as Figma from "figma-api";
-import { type Api, api } from "./figma/api";
+import { api } from "./figma/api";
+import { fetchComponents } from "./figma/fetchComponents";
+import { fetchNodes } from "./figma/fetchNodes";
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
-
-export const fetchComponents = async (api: Api) => {
-	const result = await api.getFileComponents({
-		file_key: process.env.FIGMA_FILE_KEY,
-	});
-
-	return result.meta.components;
-};
-
-export const fetchNodes = async (api: Api, nodeIds) => {
-	const result = await api.getFileNodes(
-		{
-			file_key: process.env.FIGMA_FILE_KEY,
-		},
-		{
-			ids: nodeIds.join(","),
-		},
-	);
-
-	return Object.keys(result.nodes).map((key) => result.nodes[key]);
-};
 
 export async function main() {
 	try {
